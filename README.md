@@ -125,7 +125,7 @@ class Square extends AbstractShape
 
     protected function calculatePerimeter(): float
     {
-        return 4 * $this->radius;
+        return 4 * $this->a;
     }
 
 }
