@@ -63,9 +63,10 @@ Installed are only necessary bundles:
 ### Interfaces
 ```
 Shape
-  - inputData
-  - area
-  - perimeter
+  - type [string]
+  - input [array]
+  - area [float]
+  - perimeter [float]
 ```
 
 ### Abstract classes
@@ -108,4 +109,40 @@ symfony server:start
 Docker compose 
 ```
 docker-compose up
+```
+
+# API
+
+## Triangle
+
+**Request**
+```
+[GET] /triangle/{a}/{b}/{c}
+```
+**Response example**
+```
+{
+    "type": "triangle",
+    "a": 4.0,
+    "b": 5.0,
+    "c": 6.0,
+    "area": 9.921567416492215,
+    "perimeter": 15
+}
+```
+
+## Circle
+
+**Request**
+```
+[GET] /circle/{radius}
+```
+**Response example**
+```
+{
+    "type": "circle",
+    "radius": 2,
+    "area": 12.566370614359172,
+    "perimeter": 12.566370614359172
+}
 ```
