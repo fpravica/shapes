@@ -87,6 +87,62 @@ Circle
     - constructor takes radius
 ```
 
+### Adding New Shapes
+Adding a new shape is easy. Just extend the ***AbstractShape*** class and implement:
+```
+    - calculateArea(): float;
+    - calculatePerimeter(): float;
+    - setInput(): array;
+```
+And make constructor to accept the input params.
+
+Example snippet:
+```
+namespace App\Model;
+use App\Model\AbstractShape;
+
+class Square extends AbstractShape 
+{
+    private $a;
+    
+    public function __construct(float $a)
+    {
+        $this->a = $a;
+        parent::__construct();
+    }
+
+    protected function setInput(): array
+    {
+        return array(
+            "a" => $this->a
+        );
+    }
+
+    protected function calculateArea(): float
+    {
+        return pow($this->a, 2);
+    }
+
+    protected function calculatePerimeter(): float
+    {
+        return 4 * $this->radius;
+    }
+
+}
+```
+_P.S.: Don't forget to add the endpoint method in the **ShapeController**!_
+Only this is needed in the controller:
+```
+    /**
+     * @Route("/square/{a}", methods={"GET"})
+     */
+    public function square(float $a): Response
+    {
+        $square = new Square($a);
+        return $this->buildResponse($square);
+    }
+```
+
 ### Services
 ```
 GeometryCalculator
